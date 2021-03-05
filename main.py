@@ -9,3 +9,4 @@ if __name__ == '__main__':
   print("coucou")
   bot = HangmanBot()
   bot.run(DISCORD_TOKEN)
+  
