@@ -1,14 +1,30 @@
-from discord import Client
 from discord.ext import commands
+import game
 
-class HangmanBot(commands.Bot, Client):
-  def __init__(self):
-    super().__init__(self)
+bot = commands.Bot(command_prefix='$')
+hangmanGame = game.HangmanGame({})
 
-  async def on_ready(self):
-    print('joined!')
+@bot.event
+async def on_ready():
+    print('logged in')
 
-  async def on_message(self, message):
-    if message.author == self.user: # prevent the bot to respond to himself
+
+@bot.listen('on_message') 
+# https://discordpy.readthedocs.io/en/latest/faq.html#why-does-on-message-make-my-commands-stop-working
+async def new_message(message):
+    if message.author == bot.user:  # prevent the bot from responding to himself
         return
-    await message.channel.send('je ne sais dire que ça')
+    await message.channel.send('tu m\'en diras tant')
+
+
+# ------ * Bot commands * ------ #
+
+@bot.command()
+async def start_game():
+    """Initialize a game and wait for users."""
+
+
+@bot.command()
+async def moi(ctx):
+    """Add user to the game."""
+    print(ctx.author.id)
