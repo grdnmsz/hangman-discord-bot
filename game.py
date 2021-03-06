@@ -1,6 +1,3 @@
-from utils import const
-
-
 class Player:
     def __init__(self, name: str, id: int):
         self.name, self.id = name, id
