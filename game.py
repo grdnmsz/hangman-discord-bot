@@ -7,6 +7,7 @@ class HangmanGame:
     def __init__(self, players: dict):
         self.players = {player: 0 for player in players}
         self.game_on = False
+        self.secret_word = ''
         return
 
     def check_win(self) -> bool:

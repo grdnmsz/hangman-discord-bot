@@ -17,17 +17,17 @@ async def on_ready() -> None:
 async def new_message(message) -> None:
     if message.author == bot.user:  # prevent the bot from responding to himself
         return
-    else:
-        word = api.get_random_word()
-        await message.channel.send(word)
 
 
 # ------ * Bot commands * ------ #
 @bot.command()
-async def start_game() -> None:
+async def start_game(ctx) -> None:
     """Initialize a game and wait for users.
     Usage: $start_game
     """
+    hangman_game.secret_word = api.get_random_word()
+    definition = api.get_word_definition(hangman_game.secret_word) # to delete
+    await ctx.message.channel.send(definition) # to delete 
 
 
 @bot.command()
