@@ -4,7 +4,7 @@ class Player:
 
 
 class HangmanGame:
-    def __init__(self, players: dict):
+    def __init__(self, players: dict) -> None:
         self.players = {player: 0 for player in players}
         self.game_on = False
         self.secret_word = ''

@@ -13,7 +13,8 @@ async def on_ready() -> None:
 
 
 @bot.listen('on_message')
-# https://discordpy.readthedocs.io/en/latest/faq.html#why-does-on-message-make-my-commands-stop-working
+# https://discordpy.readthedocs.io/en/latest/faq.html#why-does-on-mes
+# sage-make-my-commands-stop-working
 async def new_message(message) -> None:
     if message.author == bot.user:  # prevent the bot from responding to himself
         return
