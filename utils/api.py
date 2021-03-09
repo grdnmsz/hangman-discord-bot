@@ -30,7 +30,8 @@ def get_random_word() -> None or str:
 
 
 def get_word_definition(word: str) -> str:
-    """Return the last definition of the word
+    """Return the last definition - considered 
+    the least obvious - of the word
     if there is more than one
     """
     if type(word) is not str or not len(word):
@@ -42,12 +43,9 @@ def get_word_definition(word: str) -> str:
     except:
         raise Exception('Fail to fetch definition')
         return ''
-    else:
-        """Simply take the last definition
-        considered the least obvious, and 
-        return it formatted
-        """
+    else:  # Take the last definition , format, return
         parsed_response = res.json()[-1]
         definition, source = parsed_response["definition"], parsed_response["source"]
-        res = '{0}, définition: {1} (source : {2})'.format(word, definition, source)
+        res = '{0}, définition: {1} (source : {2})'.format(
+            word, definition, source)
         return res
