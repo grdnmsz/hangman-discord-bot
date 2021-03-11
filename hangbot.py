@@ -1,7 +1,7 @@
 from discord.ext import commands
 from asyncio import sleep
 import game
-
+from utils import literals as LITS 
 from utils import api
 
 bot = commands.Bot(command_prefix='$')
@@ -28,17 +28,17 @@ async def start_game(ctx) -> None:
     Usage: $start_game
     """
     hangman_game.game_on = True
-    await ctx.message.channel.send("Que le jeu démarre ! Vous avez 1min pour join")
+    await ctx.message.channel.send(LITS.GAME_BOT['GAME_TIMEOUT_WARN'])
     await sleep(10) # SUPPOSED TO WAIT 60s $$$$$$$$$$$
 
     if hangman_game.players == {}:
         hangman_game.reset()
-        return await ctx.message.channel.send("Game abord")
+        return await ctx.message.channel.send(LITS.GAME_BOT['GAME_ABORT'])
     else:  # init the game
         hangman_game.secret_word = api.get_random_word()
         definition = api.get_word_definition(
             hangman_game.secret_word)  # to delete
-        await ctx.message.channel.send("Game on going!")
+        await ctx.message.channel.send(LITS.GAME_BOT['GAME_GOING'])
         await ctx.message.channel.send(definition)  # to delete
 
 
@@ -48,7 +48,7 @@ async def moi(ctx) -> None:
     Usage : $moi
     """
     if hangman_game.game_on == False:
-        await ctx.message.channel.send("Start a game first (cf. $start_game)")
+        await ctx.message.channel.send(LITS.GAME_BOT['GAME_FIRST'])
         return
 
     user = ctx.author
