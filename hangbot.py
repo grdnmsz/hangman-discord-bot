@@ -1,8 +1,7 @@
 from discord.ext import commands
 from asyncio import sleep
 import game
-from utils import literals as LITS 
-from utils import api
+from utils import api, literals as LITS 
 
 bot = commands.Bot(command_prefix='$')
 hangman_game = game.HangmanGame()
